@@ -11,12 +11,12 @@
 		B4A9BBC3184C9A20009781AB /* ACPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBB1184C9A20009781AB /* ACPButton.m */; };
 		B4A9BBC4184C9A20009781AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB3184C9A20009781AB /* Main.storyboard */; };
 		B4A9BBC5184C9A20009781AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB6184C9A20009781AB /* InfoPlist.strings */; };
-		B4A9BBC6184C9A20009781AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB8184C9A20009781AB /* Images.xcassets */; };
 		B4A9BBC7184C9A20009781AB /* ZC_KFONTWHZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB9184C9A20009781AB /* ZC_KFONTWHZ.ttf */; };
 		B4A9BBC8184C9A20009781AB /* ZCDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBBB184C9A20009781AB /* ZCDefines.m */; };
 		B4A9BBC9184C9A20009781AB /* ZCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBBD184C9A20009781AB /* ZCMethod.m */; };
 		B4A9BBCA184C9A20009781AB /* ZCObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBBF184C9A20009781AB /* ZCObjects.m */; };
 		B4A9BBCB184C9A20009781AB /* ZCPokerFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBC1184C9A20009781AB /* ZCPokerFaceView.m */; };
+		B4A9BBCD184C9B39009781AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBCC184C9B39009781AB /* Images.xcassets */; };
 		B4EB0C70184C98FA0087E935 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C6F184C98FA0087E935 /* Foundation.framework */; };
 		B4EB0C72184C98FA0087E935 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C71184C98FA0087E935 /* CoreGraphics.framework */; };
 		B4EB0C74184C98FA0087E935 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C73184C98FA0087E935 /* UIKit.framework */; };
@@ -25,7 +25,6 @@
 		B4EB0C80184C98FA0087E935 /* ZCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB0C7F184C98FA0087E935 /* ZCAppDelegate.m */; };
 		B4EB0C83184C98FA0087E935 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4EB0C81184C98FA0087E935 /* Main.storyboard */; };
 		B4EB0C86184C98FA0087E935 /* ZCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4EB0C85184C98FA0087E935 /* ZCViewController.m */; };
-		B4EB0C88184C98FA0087E935 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EB0C87184C98FA0087E935 /* Images.xcassets */; };
 		B4EB0C8F184C98FA0087E935 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C8E184C98FA0087E935 /* XCTest.framework */; };
 		B4EB0C90184C98FA0087E935 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C6F184C98FA0087E935 /* Foundation.framework */; };
 		B4EB0C91184C98FA0087E935 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C73184C98FA0087E935 /* UIKit.framework */; };
@@ -49,7 +48,6 @@
 		B4A9BBB1184C9A20009781AB /* ACPButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPButton.m; sourceTree = "<group>"; };
 		B4A9BBB4184C9A20009781AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
 		B4A9BBB7184C9A20009781AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
-		B4A9BBB8184C9A20009781AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B4A9BBB9184C9A20009781AB /* ZC_KFONTWHZ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZC_KFONTWHZ.ttf; sourceTree = "<group>"; };
 		B4A9BBBA184C9A20009781AB /* ZCDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDefines.h; sourceTree = "<group>"; };
 		B4A9BBBB184C9A20009781AB /* ZCDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDefines.m; sourceTree = "<group>"; };
@@ -59,6 +57,7 @@
 		B4A9BBBF184C9A20009781AB /* ZCObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCObjects.m; sourceTree = "<group>"; };
 		B4A9BBC0184C9A20009781AB /* ZCPokerFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPokerFaceView.h; sourceTree = "<group>"; };
 		B4A9BBC1184C9A20009781AB /* ZCPokerFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPokerFaceView.m; sourceTree = "<group>"; };
+		B4A9BBCC184C9B39009781AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B4EB0C6C184C98FA0087E935 /* ForOurLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForOurLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EB0C6F184C98FA0087E935 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B4EB0C71184C98FA0087E935 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -72,7 +71,6 @@
 		B4EB0C82184C98FA0087E935 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B4EB0C84184C98FA0087E935 /* ZCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCViewController.h; sourceTree = "<group>"; };
 		B4EB0C85184C98FA0087E935 /* ZCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCViewController.m; sourceTree = "<group>"; };
-		B4EB0C87184C98FA0087E935 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B4EB0C8D184C98FA0087E935 /* ForOurLoveTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ForOurLoveTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EB0C8E184C98FA0087E935 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B4EB0C96184C98FA0087E935 /* ForOurLoveTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ForOurLoveTests-Info.plist"; sourceTree = "<group>"; };
@@ -153,12 +151,12 @@
 		B4EB0C75184C98FA0087E935 /* ForOurLove */ = {
 			isa = PBXGroup;
 			children = (
+				B4A9BBCC184C9B39009781AB /* Images.xcassets */,
 				B4A9BBAF184C9A20009781AB /* 经典繁勘亭.TTF */,
 				B4A9BBB0184C9A20009781AB /* ACPButton.h */,
 				B4A9BBB1184C9A20009781AB /* ACPButton.m */,
 				B4A9BBB2184C9A20009781AB /* Base.lproj */,
 				B4A9BBB5184C9A20009781AB /* en.lproj */,
-				B4A9BBB8184C9A20009781AB /* Images.xcassets */,
 				B4A9BBB9184C9A20009781AB /* ZC_KFONTWHZ.ttf */,
 				B4A9BBBA184C9A20009781AB /* ZCDefines.h */,
 				B4A9BBBB184C9A20009781AB /* ZCDefines.m */,
@@ -173,7 +171,6 @@
 				B4EB0C81184C98FA0087E935 /* Main.storyboard */,
 				B4EB0C84184C98FA0087E935 /* ZCViewController.h */,
 				B4EB0C85184C98FA0087E935 /* ZCViewController.m */,
-				B4EB0C87184C98FA0087E935 /* Images.xcassets */,
 				B4EB0C76184C98FA0087E935 /* Supporting Files */,
 			);
 			path = ForOurLove;
@@ -285,10 +282,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4EB0C88184C98FA0087E935 /* Images.xcassets in Resources */,
 				B4A9BBC5184C9A20009781AB /* InfoPlist.strings in Resources */,
 				B4A9BBC7184C9A20009781AB /* ZC_KFONTWHZ.ttf in Resources */,
-				B4A9BBC6184C9A20009781AB /* Images.xcassets in Resources */,
+				B4A9BBCD184C9B39009781AB /* Images.xcassets in Resources */,
 				B4A9BBC4184C9A20009781AB /* Main.storyboard in Resources */,
 				B4EB0C7A184C98FA0087E935 /* InfoPlist.strings in Resources */,
 				B4A9BBC2184C9A20009781AB /* 经典繁勘亭.TTF in Resources */,
