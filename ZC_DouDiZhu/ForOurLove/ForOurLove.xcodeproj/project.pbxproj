@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4A9BBC2184C9A20009781AB /* 经典繁勘亭.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBAF184C9A20009781AB /* 经典繁勘亭.TTF */; };
+		B4A9BBC3184C9A20009781AB /* ACPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBB1184C9A20009781AB /* ACPButton.m */; };
+		B4A9BBC4184C9A20009781AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB3184C9A20009781AB /* Main.storyboard */; };
+		B4A9BBC5184C9A20009781AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB6184C9A20009781AB /* InfoPlist.strings */; };
+		B4A9BBC6184C9A20009781AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB8184C9A20009781AB /* Images.xcassets */; };
+		B4A9BBC7184C9A20009781AB /* ZC_KFONTWHZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BBB9184C9A20009781AB /* ZC_KFONTWHZ.ttf */; };
+		B4A9BBC8184C9A20009781AB /* ZCDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBBB184C9A20009781AB /* ZCDefines.m */; };
+		B4A9BBC9184C9A20009781AB /* ZCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBBD184C9A20009781AB /* ZCMethod.m */; };
+		B4A9BBCA184C9A20009781AB /* ZCObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBBF184C9A20009781AB /* ZCObjects.m */; };
+		B4A9BBCB184C9A20009781AB /* ZCPokerFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BBC1184C9A20009781AB /* ZCPokerFaceView.m */; };
 		B4EB0C70184C98FA0087E935 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C6F184C98FA0087E935 /* Foundation.framework */; };
 		B4EB0C72184C98FA0087E935 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C71184C98FA0087E935 /* CoreGraphics.framework */; };
 		B4EB0C74184C98FA0087E935 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4EB0C73184C98FA0087E935 /* UIKit.framework */; };
@@ -34,6 +44,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4A9BBAF184C9A20009781AB /* 经典繁勘亭.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "经典繁勘亭.TTF"; sourceTree = "<group>"; };
+		B4A9BBB0184C9A20009781AB /* ACPButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPButton.h; sourceTree = "<group>"; };
+		B4A9BBB1184C9A20009781AB /* ACPButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPButton.m; sourceTree = "<group>"; };
+		B4A9BBB4184C9A20009781AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		B4A9BBB7184C9A20009781AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		B4A9BBB8184C9A20009781AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B4A9BBB9184C9A20009781AB /* ZC_KFONTWHZ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZC_KFONTWHZ.ttf; sourceTree = "<group>"; };
+		B4A9BBBA184C9A20009781AB /* ZCDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDefines.h; sourceTree = "<group>"; };
+		B4A9BBBB184C9A20009781AB /* ZCDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDefines.m; sourceTree = "<group>"; };
+		B4A9BBBC184C9A20009781AB /* ZCMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMethod.h; sourceTree = "<group>"; };
+		B4A9BBBD184C9A20009781AB /* ZCMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMethod.m; sourceTree = "<group>"; };
+		B4A9BBBE184C9A20009781AB /* ZCObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCObjects.h; sourceTree = "<group>"; };
+		B4A9BBBF184C9A20009781AB /* ZCObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCObjects.m; sourceTree = "<group>"; };
+		B4A9BBC0184C9A20009781AB /* ZCPokerFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPokerFaceView.h; sourceTree = "<group>"; };
+		B4A9BBC1184C9A20009781AB /* ZCPokerFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPokerFaceView.m; sourceTree = "<group>"; };
 		B4EB0C6C184C98FA0087E935 /* ForOurLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForOurLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EB0C6F184C98FA0087E935 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B4EB0C71184C98FA0087E935 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -79,6 +104,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4A9BBB2184C9A20009781AB /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9BBB3184C9A20009781AB /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		B4A9BBB5184C9A20009781AB /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9BBB6184C9A20009781AB /* InfoPlist.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		B4EB0C63184C98FA0087E935 = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +153,21 @@
 		B4EB0C75184C98FA0087E935 /* ForOurLove */ = {
 			isa = PBXGroup;
 			children = (
+				B4A9BBAF184C9A20009781AB /* 经典繁勘亭.TTF */,
+				B4A9BBB0184C9A20009781AB /* ACPButton.h */,
+				B4A9BBB1184C9A20009781AB /* ACPButton.m */,
+				B4A9BBB2184C9A20009781AB /* Base.lproj */,
+				B4A9BBB5184C9A20009781AB /* en.lproj */,
+				B4A9BBB8184C9A20009781AB /* Images.xcassets */,
+				B4A9BBB9184C9A20009781AB /* ZC_KFONTWHZ.ttf */,
+				B4A9BBBA184C9A20009781AB /* ZCDefines.h */,
+				B4A9BBBB184C9A20009781AB /* ZCDefines.m */,
+				B4A9BBBC184C9A20009781AB /* ZCMethod.h */,
+				B4A9BBBD184C9A20009781AB /* ZCMethod.m */,
+				B4A9BBBE184C9A20009781AB /* ZCObjects.h */,
+				B4A9BBBF184C9A20009781AB /* ZCObjects.m */,
+				B4A9BBC0184C9A20009781AB /* ZCPokerFaceView.h */,
+				B4A9BBC1184C9A20009781AB /* ZCPokerFaceView.m */,
 				B4EB0C7E184C98FA0087E935 /* ZCAppDelegate.h */,
 				B4EB0C7F184C98FA0087E935 /* ZCAppDelegate.m */,
 				B4EB0C81184C98FA0087E935 /* Main.storyboard */,
@@ -230,7 +286,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EB0C88184C98FA0087E935 /* Images.xcassets in Resources */,
+				B4A9BBC5184C9A20009781AB /* InfoPlist.strings in Resources */,
+				B4A9BBC7184C9A20009781AB /* ZC_KFONTWHZ.ttf in Resources */,
+				B4A9BBC6184C9A20009781AB /* Images.xcassets in Resources */,
+				B4A9BBC4184C9A20009781AB /* Main.storyboard in Resources */,
 				B4EB0C7A184C98FA0087E935 /* InfoPlist.strings in Resources */,
+				B4A9BBC2184C9A20009781AB /* 经典繁勘亭.TTF in Resources */,
 				B4EB0C83184C98FA0087E935 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,7 +312,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EB0C86184C98FA0087E935 /* ZCViewController.m in Sources */,
+				B4A9BBC8184C9A20009781AB /* ZCDefines.m in Sources */,
 				B4EB0C7C184C98FA0087E935 /* main.m in Sources */,
+				B4A9BBCA184C9A20009781AB /* ZCObjects.m in Sources */,
+				B4A9BBCB184C9A20009781AB /* ZCPokerFaceView.m in Sources */,
+				B4A9BBC9184C9A20009781AB /* ZCMethod.m in Sources */,
+				B4A9BBC3184C9A20009781AB /* ACPButton.m in Sources */,
 				B4EB0C80184C98FA0087E935 /* ZCAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,6 +341,22 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		B4A9BBB3184C9A20009781AB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4A9BBB4184C9A20009781AB /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B4A9BBB6184C9A20009781AB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4A9BBB7184C9A20009781AB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		B4EB0C78184C98FA0087E935 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -461,6 +543,7 @@
 				B4EB0CA0184C98FA0087E935 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4EB0CA1184C98FA0087E935 /* Build configuration list for PBXNativeTarget "ForOurLoveTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +552,7 @@
 				B4EB0CA3184C98FA0087E935 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
