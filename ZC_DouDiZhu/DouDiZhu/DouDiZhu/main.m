@@ -1,8 +1,8 @@
 //
 //  main.m
-//  DouDiZhu
+//  ForOurLove
 //
-//  Created by Iijy ZC on 13-12-2.
+//  Created by Iijy ZC on 13-11-21.
 //  Copyright (c) 2013年 Iijy ZC. All rights reserved.
 //
 

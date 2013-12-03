@@ -83,7 +83,7 @@
 #define KZC_RLSPB       CGRectMake(500,  69, 60, 25)       //label玩家B的第中心张牌,改纵坐标
 #define KZC_RLSPC       CGRectMake(  8,  69, 60, 25)       //label玩家C的第中心张牌,改纵坐标
 
-#define KZC_RLJBJA      CGRectMake(231, 138, 61, 25)       //label抢地主或不抢
+#define KZC_RLJBJA      CGRectMake(251, 138, 61, 25)       //label抢地主或不抢
 #define KZC_RLJBJB      CGRectMake(441, 100, 61, 25)       //label叫地主或不叫
 #define KZC_RLJBJC      CGRectMake(111, 100, 61, 25)      //label出不出
 #define KZC_RLTSA       CGRectMake(211, 261,261, 25)

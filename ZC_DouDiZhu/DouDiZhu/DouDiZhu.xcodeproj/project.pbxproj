@@ -10,17 +10,24 @@
 		B4A9BC85184C9F14009781AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9BC84184C9F14009781AB /* Foundation.framework */; };
 		B4A9BC87184C9F14009781AB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9BC86184C9F14009781AB /* CoreGraphics.framework */; };
 		B4A9BC89184C9F14009781AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9BC88184C9F14009781AB /* UIKit.framework */; };
-		B4A9BC8F184C9F14009781AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BC8D184C9F14009781AB /* InfoPlist.strings */; };
 		B4A9BC91184C9F14009781AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BC90184C9F14009781AB /* main.m */; };
-		B4A9BC95184C9F14009781AB /* ZCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BC94184C9F14009781AB /* ZCAppDelegate.m */; };
-		B4A9BC98184C9F14009781AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BC96184C9F14009781AB /* Main.storyboard */; };
-		B4A9BC9B184C9F14009781AB /* ZCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BC9A184C9F14009781AB /* ZCViewController.m */; };
-		B4A9BC9D184C9F14009781AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BC9C184C9F14009781AB /* Images.xcassets */; };
 		B4A9BCA4184C9F14009781AB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9BCA3184C9F14009781AB /* XCTest.framework */; };
 		B4A9BCA5184C9F14009781AB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9BC84184C9F14009781AB /* Foundation.framework */; };
 		B4A9BCA6184C9F14009781AB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4A9BC88184C9F14009781AB /* UIKit.framework */; };
 		B4A9BCAE184C9F14009781AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BCAC184C9F14009781AB /* InfoPlist.strings */; };
 		B4A9BCB0184C9F14009781AB /* DouDiZhuTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCAF184C9F14009781AB /* DouDiZhuTests.m */; };
+		B4A9BCD0184C9FEF009781AB /* 经典繁勘亭.TTF in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BCB9184C9FEF009781AB /* 经典繁勘亭.TTF */; };
+		B4A9BCD1184C9FEF009781AB /* ACPButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCBB184C9FEF009781AB /* ACPButton.m */; };
+		B4A9BCD2184C9FEF009781AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BCBD184C9FEF009781AB /* Main.storyboard */; };
+		B4A9BCD4184C9FEF009781AB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BCC2184C9FEF009781AB /* Images.xcassets */; };
+		B4A9BCD5184C9FEF009781AB /* ZC_KFONTWHZ.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BCC3184C9FEF009781AB /* ZC_KFONTWHZ.ttf */; };
+		B4A9BCD6184C9FEF009781AB /* ZCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCC5184C9FEF009781AB /* ZCAppDelegate.m */; };
+		B4A9BCD7184C9FEF009781AB /* ZCDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCC7184C9FEF009781AB /* ZCDefines.m */; };
+		B4A9BCD8184C9FEF009781AB /* ZCMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCC9184C9FEF009781AB /* ZCMethod.m */; };
+		B4A9BCD9184C9FEF009781AB /* ZCObjects.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCCB184C9FEF009781AB /* ZCObjects.m */; };
+		B4A9BCDA184C9FEF009781AB /* ZCPokerFaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCCD184C9FEF009781AB /* ZCPokerFaceView.m */; };
+		B4A9BCDB184C9FEF009781AB /* ZCViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4A9BCCF184C9FEF009781AB /* ZCViewController.m */; };
+		B4A9BCE5184CAA5A009781AB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4A9BCE4184CAA5A009781AB /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,20 +46,32 @@
 		B4A9BC86184C9F14009781AB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B4A9BC88184C9F14009781AB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B4A9BC8C184C9F14009781AB /* DouDiZhu-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DouDiZhu-Info.plist"; sourceTree = "<group>"; };
-		B4A9BC8E184C9F14009781AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4A9BC90184C9F14009781AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B4A9BC92184C9F14009781AB /* DouDiZhu-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DouDiZhu-Prefix.pch"; sourceTree = "<group>"; };
-		B4A9BC93184C9F14009781AB /* ZCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCAppDelegate.h; sourceTree = "<group>"; };
-		B4A9BC94184C9F14009781AB /* ZCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCAppDelegate.m; sourceTree = "<group>"; };
-		B4A9BC97184C9F14009781AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		B4A9BC99184C9F14009781AB /* ZCViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZCViewController.h; sourceTree = "<group>"; };
-		B4A9BC9A184C9F14009781AB /* ZCViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZCViewController.m; sourceTree = "<group>"; };
-		B4A9BC9C184C9F14009781AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B4A9BCA2184C9F14009781AB /* DouDiZhuTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DouDiZhuTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4A9BCA3184C9F14009781AB /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B4A9BCAB184C9F14009781AB /* DouDiZhuTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DouDiZhuTests-Info.plist"; sourceTree = "<group>"; };
 		B4A9BCAD184C9F14009781AB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B4A9BCAF184C9F14009781AB /* DouDiZhuTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DouDiZhuTests.m; sourceTree = "<group>"; };
+		B4A9BCB9184C9FEF009781AB /* 经典繁勘亭.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "经典繁勘亭.TTF"; sourceTree = "<group>"; };
+		B4A9BCBA184C9FEF009781AB /* ACPButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ACPButton.h; sourceTree = "<group>"; };
+		B4A9BCBB184C9FEF009781AB /* ACPButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ACPButton.m; sourceTree = "<group>"; };
+		B4A9BCBE184C9FEF009781AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Main.storyboard; sourceTree = "<group>"; };
+		B4A9BCC2184C9FEF009781AB /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B4A9BCC3184C9FEF009781AB /* ZC_KFONTWHZ.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZC_KFONTWHZ.ttf; sourceTree = "<group>"; };
+		B4A9BCC4184C9FEF009781AB /* ZCAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCAppDelegate.h; sourceTree = "<group>"; };
+		B4A9BCC5184C9FEF009781AB /* ZCAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCAppDelegate.m; sourceTree = "<group>"; };
+		B4A9BCC6184C9FEF009781AB /* ZCDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCDefines.h; sourceTree = "<group>"; };
+		B4A9BCC7184C9FEF009781AB /* ZCDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCDefines.m; sourceTree = "<group>"; };
+		B4A9BCC8184C9FEF009781AB /* ZCMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCMethod.h; sourceTree = "<group>"; };
+		B4A9BCC9184C9FEF009781AB /* ZCMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCMethod.m; sourceTree = "<group>"; };
+		B4A9BCCA184C9FEF009781AB /* ZCObjects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCObjects.h; sourceTree = "<group>"; };
+		B4A9BCCB184C9FEF009781AB /* ZCObjects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCObjects.m; sourceTree = "<group>"; };
+		B4A9BCCC184C9FEF009781AB /* ZCPokerFaceView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCPokerFaceView.h; sourceTree = "<group>"; };
+		B4A9BCCD184C9FEF009781AB /* ZCPokerFaceView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCPokerFaceView.m; sourceTree = "<group>"; };
+		B4A9BCCE184C9FEF009781AB /* ZCViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZCViewController.h; sourceTree = "<group>"; };
+		B4A9BCCF184C9FEF009781AB /* ZCViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZCViewController.m; sourceTree = "<group>"; };
+		B4A9BCE4184CAA5A009781AB /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = InfoPlist.strings; path = ../InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,12 +131,25 @@
 		B4A9BC8A184C9F14009781AB /* DouDiZhu */ = {
 			isa = PBXGroup;
 			children = (
-				B4A9BC93184C9F14009781AB /* ZCAppDelegate.h */,
-				B4A9BC94184C9F14009781AB /* ZCAppDelegate.m */,
-				B4A9BC96184C9F14009781AB /* Main.storyboard */,
-				B4A9BC99184C9F14009781AB /* ZCViewController.h */,
-				B4A9BC9A184C9F14009781AB /* ZCViewController.m */,
-				B4A9BC9C184C9F14009781AB /* Images.xcassets */,
+				B4A9BCB9184C9FEF009781AB /* 经典繁勘亭.TTF */,
+				B4A9BCBA184C9FEF009781AB /* ACPButton.h */,
+				B4A9BCBB184C9FEF009781AB /* ACPButton.m */,
+				B4A9BCBC184C9FEF009781AB /* Base.lproj */,
+				B4A9BCBF184C9FEF009781AB /* en.lproj */,
+				B4A9BCC2184C9FEF009781AB /* Images.xcassets */,
+				B4A9BCC3184C9FEF009781AB /* ZC_KFONTWHZ.ttf */,
+				B4A9BCC4184C9FEF009781AB /* ZCAppDelegate.h */,
+				B4A9BCC5184C9FEF009781AB /* ZCAppDelegate.m */,
+				B4A9BCC6184C9FEF009781AB /* ZCDefines.h */,
+				B4A9BCC7184C9FEF009781AB /* ZCDefines.m */,
+				B4A9BCC8184C9FEF009781AB /* ZCMethod.h */,
+				B4A9BCC9184C9FEF009781AB /* ZCMethod.m */,
+				B4A9BCCA184C9FEF009781AB /* ZCObjects.h */,
+				B4A9BCCB184C9FEF009781AB /* ZCObjects.m */,
+				B4A9BCCC184C9FEF009781AB /* ZCPokerFaceView.h */,
+				B4A9BCCD184C9FEF009781AB /* ZCPokerFaceView.m */,
+				B4A9BCCE184C9FEF009781AB /* ZCViewController.h */,
+				B4A9BCCF184C9FEF009781AB /* ZCViewController.m */,
 				B4A9BC8B184C9F14009781AB /* Supporting Files */,
 			);
 			path = DouDiZhu;
@@ -127,7 +159,6 @@
 			isa = PBXGroup;
 			children = (
 				B4A9BC8C184C9F14009781AB /* DouDiZhu-Info.plist */,
-				B4A9BC8D184C9F14009781AB /* InfoPlist.strings */,
 				B4A9BC90184C9F14009781AB /* main.m */,
 				B4A9BC92184C9F14009781AB /* DouDiZhu-Prefix.pch */,
 			);
@@ -150,6 +181,22 @@
 				B4A9BCAC184C9F14009781AB /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B4A9BCBC184C9FEF009781AB /* Base.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9BCBD184C9FEF009781AB /* Main.storyboard */,
+			);
+			path = Base.lproj;
+			sourceTree = "<group>";
+		};
+		B4A9BCBF184C9FEF009781AB /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				B4A9BCE4184CAA5A009781AB /* InfoPlist.strings */,
+			);
+			path = en.lproj;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,9 +276,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A9BC9D184C9F14009781AB /* Images.xcassets in Resources */,
-				B4A9BC8F184C9F14009781AB /* InfoPlist.strings in Resources */,
-				B4A9BC98184C9F14009781AB /* Main.storyboard in Resources */,
+				B4A9BCD5184C9FEF009781AB /* ZC_KFONTWHZ.ttf in Resources */,
+				B4A9BCD2184C9FEF009781AB /* Main.storyboard in Resources */,
+				B4A9BCD4184C9FEF009781AB /* Images.xcassets in Resources */,
+				B4A9BCD0184C9FEF009781AB /* 经典繁勘亭.TTF in Resources */,
+				B4A9BCE5184CAA5A009781AB /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -250,9 +299,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4A9BC9B184C9F14009781AB /* ZCViewController.m in Sources */,
+				B4A9BCDA184C9FEF009781AB /* ZCPokerFaceView.m in Sources */,
+				B4A9BCDB184C9FEF009781AB /* ZCViewController.m in Sources */,
+				B4A9BCD1184C9FEF009781AB /* ACPButton.m in Sources */,
+				B4A9BCD7184C9FEF009781AB /* ZCDefines.m in Sources */,
+				B4A9BCD6184C9FEF009781AB /* ZCAppDelegate.m in Sources */,
 				B4A9BC91184C9F14009781AB /* main.m in Sources */,
-				B4A9BC95184C9F14009781AB /* ZCAppDelegate.m in Sources */,
+				B4A9BCD8184C9FEF009781AB /* ZCMethod.m in Sources */,
+				B4A9BCD9184C9FEF009781AB /* ZCObjects.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,28 +329,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B4A9BC8D184C9F14009781AB /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4A9BC8E184C9F14009781AB /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B4A9BC96184C9F14009781AB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B4A9BC97184C9F14009781AB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		B4A9BCAC184C9F14009781AB /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
 				B4A9BCAD184C9F14009781AB /* en */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B4A9BCBD184C9FEF009781AB /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4A9BCBE184C9FEF009781AB /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
