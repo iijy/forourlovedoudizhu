@@ -35,6 +35,22 @@
 }
 @end
 @implementation ZCSeparateArray
+-(id)init{
+    self=[super init];
+    self.resultstr=@"OK";
+    self.countfours=0;
+    self.counttrips=0;
+    self.countdoubles=0;
+    self.countsingles=0;
+    self.classnum=0;
+    self.arrfours=[NSMutableArray new];
+    self.arrtrips=[NSMutableArray new];
+    self.arrdouble=[NSMutableArray new];
+    self.arrsingle=[NSMutableArray new];
+    self.arrreset=[NSMutableArray new];
+    self.arrjokers=[NSMutableArray arrayWithCapacity:2];
+    return self;
+}
 @end
 @implementation ZCSeparateStraight
 @end

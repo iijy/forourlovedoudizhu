@@ -64,6 +64,7 @@
 @property    NSMutableArray *arrdouble;
 @property    NSMutableArray *arrsingle;
 @property    NSMutableArray *arrreset;
+@property    NSMutableArray *arrjokers;
 
 @end
 @interface ZCSeparateStraight : NSObject

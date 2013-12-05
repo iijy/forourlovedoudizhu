@@ -157,7 +157,7 @@
 #define KZC_TXTREKAISHI   @"重新开始"
 
 #define KZC_TXTCSDZBIRTH [NSString stringWithFormat:@"%@叫地主，%@是否抢地主？",[self getJDplayer:intCSDZ].plname,[self getJDplayer:intJD].plname]
-#define KZC_TXTNEXTISWANNABE [NSString stringWithFormat:@"%@没有叫地主，%@是否叫地主？",[self getJDplayer:[mymethod jdscrollF:intJD]],[self getJDplayer:intJD].plname]
+#define KZC_TXTNEXTISWANNABE [NSString stringWithFormat:@"%@没有叫地主，%@是否叫地主？",[self getJDplayer:[mymethod jdscrollF:intJD]].plname,[self getJDplayer:intJD].plname]
 #define KZC_TXTISWANNABE [NSString stringWithFormat:@"%@叫地主？",[self getJDplayer:intJD].plname]
 #define KZC_TXTISWANNADO [NSString stringWithFormat:@"%@是否抢地主？",[self getJDplayer:intJD].plname]
 #define KZC_TXTWAITING   [NSString stringWithFormat:@"等待%@出牌",[self getJDplayer:intJD].plname]

@@ -72,6 +72,7 @@
     intQCS=0;
     intDZ=0;
     intlastQ=0;
+    intBQCS=0;
     mymethod=[[ZCMethod alloc]init];
     myplayerI=[[ZCPlayer alloc]init];
     myplayerI.plname=@"玩家A";
@@ -166,14 +167,14 @@
 
 -(void)showpocketLabels:(ZCPlayer *)player{
     NSInteger count =[player.plpocket count];
-    NSLog(@"plpo count=%d",count);
+//    NSLog(@"plpo count=%d",count);
     CGRect rect=player.plframe;
     ZCPoker *getpokers[count];
     for (int i=0; i<count; i++) {
         getpokers[i] = [player.plpocket objectAtIndex:i];
         if (player.plnum==1) {
             CGFloat startx=((count-1)*KZC_WIDTHPOCKETS+KZC_RLSPA.size.width)/2;
-            NSLog(@"startx=%f",startx);
+//            NSLog(@"startx=%f",startx);
             if (getpokers[i].poisselected==YES) {
                 getpokers[i].poview.frame=CGRectMake(KZC_RLSPA.origin.x-startx+i*KZC_WIDTHPOCKETS,
                                                      rect.origin.y-KZC_HEIGHTADD,

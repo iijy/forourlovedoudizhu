@@ -146,6 +146,7 @@
     if (oriJD==3) return 1;
     return oriJD+1;
 } //循环焦点
+
 -(int)jdscrollF:(int)oriJD{
     if (oriJD==1) return 3;
     return oriJD-1;
@@ -309,59 +310,18 @@
     return YES;
 }//顺子
 -(ZCSeparateArray *)separatethearray:(NSMutableArray *)arrayC{
-    ZCSeparateArray *mysa=[ZCSeparateArray new];
-    mysa.countfours=0;
-    mysa.counttrips=0;
-    mysa.countdoubles=0;
-    mysa.countsingles=0;
-    mysa.classnum=0;
-    mysa.arrfours=[NSMutableArray new];
-    mysa.arrtrips=[NSMutableArray new];
-    mysa.arrdouble=[NSMutableArray new];
-    mysa.arrsingle=[NSMutableArray new];
-    mysa.arrreset=[NSMutableArray new];
+    ZCSeparateArray *mysa=[[ZCSeparateArray alloc]init];
     ZCPoker *getpokersdouble[10];
     ZCPoker *getpokerstrips[6];
-    NSInteger count=[arrayC count];
-    ZCPoker *getpokers[count];
-    for (int i=0; i<count; i++) {
-        getpokers[i]=arrayC[i];
-    }
-    if (count==2&&getpokers[0].ponum==100&&getpokers[1].ponum==50){
+    mysa=[self separateFTDSanalysis:mysa :arrayC];
+    if ([mysa.arrjokers count]==2){
         mysa.classnum=KZC_BUMBSBIG;
-        [mysa.arrreset addObject:getpokers[0]];
-        [mysa.arrreset addObject:getpokers[1]];
+        ZCPoker *getpokerJB=mysa.arrjokers[0];
+        ZCPoker *getpokerJS=mysa.arrjokers[1];
+        [mysa.arrreset addObject:getpokerJB];
+        [mysa.arrreset addObject:getpokerJS];
         return mysa;
     }
-    for (int i=0; i<count; ) {
-        if ((i+1<count)&&getpokers[i].ponum==getpokers[i+1].ponum) {
-            if ((i+2<count)&&getpokers[i].ponum==getpokers[i+2].ponum) {
-                if ((i+3<count)&&getpokers[i].ponum==getpokers[i+3].ponum) {
-                    [mysa.arrfours addObject:getpokers[i]];
-                    [mysa.arrfours addObject:getpokers[i+1] ];
-                    [mysa.arrfours addObject:getpokers[i+2] ];
-                    [mysa.arrfours addObject:getpokers[i+3] ];
-                    i=i+4;
-                }else{
-                    [mysa.arrtrips addObject:getpokers[i] ];
-                    [mysa.arrtrips addObject:getpokers[i+1] ];
-                    [mysa.arrtrips addObject:getpokers[i+2] ];
-                    i=i+3;
-                }
-            }else{
-                [mysa.arrdouble addObject:getpokers[i] ];
-                [mysa.arrdouble addObject:getpokers[i+1] ];
-                i=i+2;
-            }
-        }else {
-            [mysa.arrsingle addObject:getpokers[i] ];
-            i++;
-        }
-    }
-    mysa.countfours=[mysa.arrfours count]/4;
-    mysa.counttrips=[mysa.arrtrips count]/3;
-    mysa.countdoubles=[mysa.arrdouble count]/2;
-    mysa.countsingles=[mysa.arrsingle count];
     if (mysa.countfours>1) {
         mysa.classnum=KZC_CANNOTII;
         return mysa;
@@ -459,13 +419,17 @@
     }
     int fjcparr=[self firstjudge: cparr];
     ZCSeparateStraight *mySS;
-    ZCSeparateArray *mySAN;
+    ZCSeparateArray *mySAN=[[ZCSeparateArray alloc]init];
     switch (fjcparr) {
         case KZC_STRAIGHT:
             mySS=[self separatstraightfromarr:cparr :pocketarr];
             strresult=mySS.myresultstr;
             if ([strresult isEqualToString:KZC_TXTPOOL]) {
-                return strresult;
+                mySAN=[self separateFTDSanalysis:mySAN :pocketarr];
+                mySAN=[self separateFTDSanalysisUNDONE:mySAN];
+                if ([mySAN.resultstr isEqualToString:KZC_TXTPOOL]) {
+                    return strresult;
+                }else strresult=mySAN.resultstr;
             }
             for (NSInteger i=0; i<countSP; i++) {
                 getpokerSP[i].poisselected=NO;
@@ -476,6 +440,16 @@
                     }
                 }
             }
+            for (NSInteger i=0; i<countSP; i++) {
+                getpokerSP[i].poisselected=NO;
+                for (NSInteger j=0; j<[mySAN.arrreset count]; j++) {
+                    ZCPoker *getpokerN=mySAN.arrreset[j];
+                    if (getpokerSP[i]==getpokerN) {
+                        getpokerSP[i].poisselected=YES;
+                    }
+                }
+            }
+
             break;
         case KZC_STRAIGHTFLUSH:
             break;
@@ -499,6 +473,7 @@
     }
     return strresult;
 }
+
 -(ZCSeparateStraight *)separatstraightfromarr:(NSMutableArray *)cparr :(NSMutableArray *)sparr{
     NSInteger countSP=[sparr count];
     NSInteger countCP=[cparr count];
@@ -551,14 +526,143 @@
         }
     }
     myST.myresultstr=@"OK";
-    for (int i=0; i<[myST.mySA count]; i++) {
-        ZCPoker *getpokerN=myST.mySA[i];
-        NSLog(@"%@%@",getpokerN.potype,getpokerN.potext);
-    }
+//    for (int i=0; i<[myST.mySA count]; i++) {
+//        ZCPoker *getpokerN=myST.mySA[i];
+//        NSLog(@"%@%@",getpokerN.potype,getpokerN.potext);
+//    }
     return myST;
 }
 
 -(ZCSeparateArray *)separateFTDSfromarr:(NSMutableArray *)cparr :(NSMutableArray *)sparr{
+    int fjcparr=[self firstjudge:cparr];//出牌类型
+    ZCSeparateArray *mysacp=[self separatethearray:cparr];
+    ZCSeparateArray *mysanew=[[ZCSeparateArray alloc]init];
+    mysanew=[self separateFTDSanalysis:mysanew :sparr];
+    NSInteger countCP=[cparr count];
+    if (countCP==0) {
+        ZCPoker *getpokerSP0=sparr[0];
+        [mysanew.arrreset addObject:getpokerSP0];
+        return mysanew;
+    }
+    ZCPoker *getpokerCP[countCP];
+    for (int i=0; i<countCP; i++) {
+        getpokerCP[i]=cparr[i];
+    }
+    NSInteger lsint;
+    switch (fjcparr) {
+        case KZC_SINGLEP:
+            mysanew=[self separateFTDSforsingle:mysanew :getpokerCP[0]:sparr];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_DOUBLEP:
+            mysanew=[self separateFTDSfordouble:mysanew :getpokerCP[0]];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_MUDOUBLEPS:
+            lsint=countCP/2;
+            mysanew=[self separateFTDSformudouble :mysanew :getpokerCP[0] :lsint];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_TRIPS:
+            lsint=countCP/3;
+            mysanew=[self separateFTDSfortrip:mysanew :getpokerCP[0] :lsint :KZC_TRIPS];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_TRIPSANDI:
+            lsint=mysacp.countsingles;
+            mysanew=[self separateFTDSfortrip:mysanew :getpokerCP[0] :lsint :KZC_TRIPSANDI];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_TRIPSANDII:
+            lsint=mysacp.countdoubles;
+            mysanew=[self separateFTDSfortrip:mysanew :getpokerCP[0] :lsint :KZC_TRIPSANDII];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_FOURANDONEONE:
+            mysanew=[self separateFTDSforfour:mysanew :getpokerCP[0] :KZC_FOURANDONEONE];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_FOURANDTOWTOW:
+            mysanew=[self separateFTDSforfour:mysanew :getpokerCP[0] :KZC_FOURANDTOWTOW];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        case KZC_BUMB:
+            mysanew=[self separateFTDSforfour:mysanew :getpokerCP[0] :KZC_BUMB];
+            if ([mysanew.resultstr isEqualToString:@"OK"])   return mysanew;  break;
+        default:
+            break;
+    }
+    if ([mysanew.resultstr isEqualToString: KZC_TXTPOOL]) {
+        mysanew=[self separateFTDSanalysisUNDONE:mysanew];
+    }
+    return mysanew;
+}
+
+-(ZCSeparateArray *)separateFTDSanalysis:(ZCSeparateArray *)mysanew :(NSMutableArray *)sparr{
+    NSInteger countSP=[sparr count];
+    ZCPoker *getpokerSP[countSP];
+    for (int i=0; i<countSP; i++) {
+        getpokerSP[i]=sparr[i];
+    }
+    if (getpokerSP[0].ponum==100&&getpokerSP[1].ponum==50) {
+        [mysanew.arrjokers addObject:getpokerSP[0]];
+        [mysanew.arrjokers addObject:getpokerSP[1]];
+    }
+    if (countSP==2&&getpokerSP[0].ponum==100&&getpokerSP[1].ponum==50){
+        mysanew.classnum=KZC_BUMBSBIG;
+        [mysanew.arrreset addObject:getpokerSP[0]];
+        [mysanew.arrreset addObject:getpokerSP[1]];
+        return mysanew;
+    }
+    for (int i=0; i<countSP; ) {
+        if ((i+1<countSP)&&getpokerSP[i].ponum==getpokerSP[i+1].ponum) {
+            if ((i+2<countSP)&&getpokerSP[i].ponum==getpokerSP[i+2].ponum) {
+                if ((i+3<countSP)&&getpokerSP[i].ponum==getpokerSP[i+3].ponum) {
+                    [mysanew.arrfours addObject:getpokerSP[i]];
+                    [mysanew.arrfours addObject:getpokerSP[i+1] ];
+                    [mysanew.arrfours addObject:getpokerSP[i+2] ];
+                    [mysanew.arrfours addObject:getpokerSP[i+3] ];
+                    i=i+4;
+                }else{
+                    [mysanew.arrtrips addObject:getpokerSP[i] ];
+                    [mysanew.arrtrips addObject:getpokerSP[i+1] ];
+                    [mysanew.arrtrips addObject:getpokerSP[i+2] ];
+                    i=i+3;
+                }
+            }else{
+                [mysanew.arrdouble addObject:getpokerSP[i] ];
+                [mysanew.arrdouble addObject:getpokerSP[i+1] ];
+                i=i+2;
+            }
+        }else {
+            [mysanew.arrsingle addObject:getpokerSP[i] ];
+            i++;
+        }
+    }
+    mysanew.countfours=[mysanew.arrfours count]/4;
+    mysanew.counttrips=[mysanew.arrtrips count]/3;
+    mysanew.countdoubles=[mysanew.arrdouble count]/2;
+    mysanew.countsingles=[mysanew.arrsingle count];
+    return mysanew;
+}//根据牌数组sparr，填充4321分析类的各个数组
+
+-(ZCSeparateArray *)separateFTDSanalysisUNDONE:(ZCSeparateArray *)mysanew {
+    if (mysanew.countfours>0) {
+        [mysanew.arrreset removeAllObjects];
+        mysanew.arrreset=[NSMutableArray new];
+        for (NSInteger mm=0; mm<4; mm++) {
+            mysanew.resultstr=@"OK";
+            ZCPoker *getpokerN=mysanew.arrfours[[mysanew.arrfours count]-1-mm];
+            [mysanew.arrreset addObject:getpokerN];
+        }
+        return mysanew;
+    }else if([mysanew.arrjokers count]==2){
+        mysanew.resultstr=@"OK";
+        [mysanew.arrreset removeAllObjects];
+        mysanew.arrreset=[NSMutableArray new];
+        ZCPoker *getpokerJB=mysanew.arrjokers[0];
+        ZCPoker *getpokerJS=mysanew.arrjokers[1];
+        [mysanew.arrreset addObject:getpokerJB];
+        [mysanew.arrreset addObject:getpokerJS];
+        return mysanew;
+    }
+    mysanew.resultstr=KZC_TXTPOOL;
+    return mysanew;
+}//若提示不出来，则判断有木有炸弹，有就提示炸弹
+
+-(ZCSeparateArray *)separateFTDSfromarrII:(NSMutableArray *)cparr :(NSMutableArray *)sparr{
     int fjcparr=[self firstjudge:cparr];//出牌类型
     ZCSeparateArray *mysacp=[self separatethearray:cparr];
     ZCSeparateArray *mysanew=[ZCSeparateArray new];
@@ -573,7 +677,7 @@
     mysanew.arrdouble=[NSMutableArray new];
     mysanew.arrsingle=[NSMutableArray new];
     mysanew.arrreset=[NSMutableArray new];
-   
+    
     NSMutableArray *arrjokers=[NSMutableArray arrayWithCapacity:2];
     
     NSInteger countSP=[sparr count];
@@ -648,7 +752,7 @@
                 }
             }
             mysanew.resultstr=KZC_TXTPOOL;
-            break;
+                       break;
         case KZC_DOUBLEP:
             if (mysanew.countdoubles>0) {
                 for (NSInteger i=mysanew.countdoubles*2-1; i>0; i=i-2) {
@@ -727,7 +831,7 @@
                         mysanew.arrreset=[NSMutableArray new];
                     }
                 }
-
+                
             }
             if (mysanew.countfours>=lsint) {
                 for (NSInteger i=mysanew.countfours*4-1,k=0; i>0; i=i-4) {
@@ -777,7 +881,7 @@
                         if (k/3==lsint) {
                             return mysanew;
                         }
-
+                        
                     }else if(k>0&&getpokerN.ponum==getpokerO.ponum+1){
                         [mysanew.arrreset addObject:getpokerN];
                         [mysanew.arrreset addObject:getpokerM];
@@ -930,13 +1034,13 @@
                         [mysanew.arrreset addObject:getpokerK];
                         k=k+4;
                         if (k/4==1) {
-                           
+                            
                             getpokerN=mysanew.arrdouble[mysanew.countdoubles-1];
                             getpokerN=mysanew.arrdouble[mysanew.countdoubles-2];
                             getpokerN=mysanew.arrdouble[mysanew.countdoubles-3];
                             getpokerN=mysanew.arrdouble[mysanew.countdoubles-4];
                             [mysanew.arrreset addObject:getpokerN];
-                           
+                            
                             return mysanew;
                         }
                     }
@@ -990,6 +1094,237 @@
         }
     }
     return mysanew;
+}//冗长代码备份，20131205废
+
+-(ZCSeparateArray *)separateFTDSforsingle:(ZCSeparateArray *)mysanew :(ZCPoker *)getpokerCP0 :(NSMutableArray *)sparr{
+    NSInteger countSP=[sparr count];
+    ZCPoker *getpokerSP[countSP];
+    for (int i=0; i<countSP; i++) {
+        getpokerSP[i]=sparr[i];
+    }
+    for (NSInteger i=mysanew.countsingles-1; i>=0; i--) {
+        ZCPoker *getpokerN=mysanew.arrsingle[i];
+        if (getpokerN.ponum>getpokerCP0.ponum){
+            [mysanew.arrreset addObject:getpokerN];
+            return mysanew;
+        }
+    }
+    for (NSInteger i=countSP-1; i>=0; i--) {
+        ZCPoker *getpokerN=sparr[i];
+        if (getpokerN.ponum>getpokerCP0.ponum){
+            [mysanew.arrreset addObject:getpokerN];
+            return mysanew;
+        }
+    }
+    mysanew.resultstr=KZC_TXTPOOL;
+    return mysanew;
 }
 
+-(ZCSeparateArray *)separateFTDSfordouble:(ZCSeparateArray *)mysanew :(ZCPoker *)getpokerCP0{
+    NSMutableArray *lsarr;
+    NSInteger lscount=0;
+    int lsint=0;
+    if (mysanew.countdoubles>0) {
+        lsarr=mysanew.arrdouble;
+        lscount=mysanew.countdoubles;
+        lsint=2;
+    }else if(mysanew.counttrips>0) {
+        lsarr=mysanew.arrtrips;
+        lscount=mysanew.counttrips;
+        lsint=3;
+    }else{
+        mysanew.resultstr=KZC_TXTPOOL;
+        return mysanew;
+    }
+    for (NSInteger i=lscount*lsint-1; i>0; i=i-lsint) {
+        ZCPoker *getpokerN=lsarr[i];
+        ZCPoker *getpokerM=lsarr[i-1];
+        if (getpokerN.ponum>getpokerCP0.ponum){
+            [mysanew.arrreset addObject:getpokerN];
+            [mysanew.arrreset addObject:getpokerM];
+            return mysanew;
+        }
+    }
+    mysanew.resultstr=KZC_TXTPOOL;
+    return mysanew;
+}
+
+-(ZCSeparateArray *)separateFTDSformudouble:(ZCSeparateArray *)mysanew :(ZCPoker *)getpokerCP0 :(int)lsintA{
+    NSMutableArray *lsarr;
+    NSInteger lscount=0;
+    int lsint=0;
+    if(mysanew.countdoubles>=lsintA){
+        lsarr=mysanew.arrdouble;
+        lscount=mysanew.countdoubles;
+        lsint=2;
+    }else if (mysanew.counttrips>=lsint) {
+        lsarr=mysanew.arrdouble;
+        lscount=mysanew.countdoubles;
+        lsint=2;
+    }else if (mysanew.countfours>=lsint) {
+        lsarr=mysanew.arrdouble;
+        lscount=mysanew.countdoubles;
+        lsint=2;
+    }
+    for (NSInteger i=lscount*lsint-1,k=0; i>0; i=i-lsint) {
+        ZCPoker *getpokerO;
+        if (i<lscount*lsint-lsint) {
+            getpokerO=lsarr[i+1];
+        }
+        ZCPoker *getpokerN=lsarr[i];
+        ZCPoker *getpokerM=lsarr[i-1];
+        if (k==0&&getpokerN.ponum>getpokerCP0.ponum){
+            [mysanew.arrreset addObject:getpokerN];
+            [mysanew.arrreset addObject:getpokerM];
+            k=k+2;
+        }else if(k>0&&getpokerN.ponum==getpokerO.ponum+1){
+            [mysanew.arrreset addObject:getpokerN];
+            [mysanew.arrreset addObject:getpokerM];
+            k=k+2;
+            if (k/2==lsint) {
+                return mysanew;
+            }
+        }else if(k>0&&getpokerN.ponum!=getpokerO.ponum+1){
+            k=0;
+            [mysanew.arrreset removeAllObjects];
+            mysanew.arrreset=[NSMutableArray new];
+        }
+    }
+    mysanew.resultstr=KZC_TXTPOOL;
+    return mysanew;
+}
+
+-(ZCSeparateArray *)separateFTDSfortrip:(ZCSeparateArray *)mysanew :(ZCPoker *)getpokerCP0 :(int)lsintA :(int)lsintJ{
+    switch (lsintJ) {
+        case KZC_TRIPS:
+            break;
+        case KZC_TRIPSANDI:
+            if (mysanew.countsingles<lsintA) {
+                mysanew.resultstr=KZC_TXTPOOL;
+                return mysanew;
+            }
+            break;
+        case KZC_TRIPSANDII:
+            if (mysanew.countdoubles<lsintA) {
+                mysanew.resultstr=KZC_TXTPOOL;
+                return mysanew;
+            }
+            break;
+        default:
+            break;
+    }
+    if(mysanew.counttrips>=lsintA){
+        for (NSInteger i=mysanew.counttrips*3-1,k=0; i>0; i=i-3) {
+            ZCPoker *getpokerO;
+            if (i<mysanew.counttrips*3-2) {
+                getpokerO=mysanew.arrtrips[i+1];
+            }
+            ZCPoker *getpokerN=mysanew.arrtrips[i];
+            ZCPoker *getpokerM=mysanew.arrtrips[i-1];
+            ZCPoker *getpokerL=mysanew.arrtrips[i-2];
+            if (k==0&&getpokerN.ponum>getpokerCP0.ponum){
+                [mysanew.arrreset addObject:getpokerN];
+                [mysanew.arrreset addObject:getpokerM];
+                [mysanew.arrreset addObject:getpokerL];
+                k=k+3;
+                if (k/3==lsintA) {
+                    if (lsintJ==KZC_TRIPSANDI) {
+                        for (NSInteger mm=0; mm<lsintA; mm++) {
+                            getpokerN=mysanew.arrsingle[mysanew.countsingles-1-mm];
+                            [mysanew.arrreset addObject:getpokerN];
+                        }
+                    }else if (lsintJ==KZC_TRIPSANDII){
+                        for (NSInteger mm=0; mm<lsintA*2; mm++) {
+                            getpokerN=mysanew.arrdouble[mysanew.countdoubles*2-1-mm];
+                            [mysanew.arrreset addObject:getpokerN];
+                        }
+                    }
+                    return mysanew;
+                }
+            }else if(k>0&&getpokerN.ponum==getpokerO.ponum+1){
+                [mysanew.arrreset addObject:getpokerN];
+                [mysanew.arrreset addObject:getpokerM];
+                [mysanew.arrreset addObject:getpokerL];
+                k=k+3;
+                if (k/3==lsintA) {
+                    if (lsintJ==KZC_TRIPSANDI) {
+                        for (NSInteger mm=0; mm<lsintA; mm++) {
+                            getpokerN=mysanew.arrsingle[mysanew.countsingles-1-mm];
+                            [mysanew.arrreset addObject:getpokerN];
+                        }
+                    }else if (lsintJ==KZC_TRIPSANDII){
+                        for (NSInteger mm=0; mm<lsintA*2; mm++) {
+                            getpokerN=mysanew.arrdouble[mysanew.countdoubles*2-1-mm];
+                            [mysanew.arrreset addObject:getpokerN];
+                        }
+                    }
+                    return mysanew;
+                }
+            }else if(k>0&&getpokerN.ponum!=getpokerO.ponum+1){
+                k=0;
+                [mysanew.arrreset removeAllObjects];
+                mysanew.arrreset=[NSMutableArray new];
+            }
+        }
+    }
+    mysanew.resultstr=KZC_TXTPOOL;
+    return mysanew;
+}
+
+-(ZCSeparateArray *)separateFTDSforfour:(ZCSeparateArray *)mysanew :(ZCPoker *)getpokerCP0 :(int)lsintJ{
+    switch (lsintJ) {
+        case KZC_BUMB:
+            break;
+        case KZC_FOURANDONEONE:
+            if (mysanew.countsingles<2) {
+                mysanew.resultstr=KZC_TXTPOOL;
+                return mysanew;
+            }
+            break;
+        case KZC_FOURANDTOWTOW:
+            if (mysanew.countdoubles<1) {
+                mysanew.resultstr=KZC_TXTPOOL;
+                return mysanew;
+            }
+            break;
+        default:
+            break;
+    }
+    if(mysanew.countfours>=1){
+        for (NSInteger i=mysanew.countfours*4-1,k=0; i>0; i=i-4) {
+            ZCPoker *getpokerO;
+            if (i<mysanew.countfours*4-4) {
+                getpokerO=mysanew.arrfours[i+1];
+            }
+            ZCPoker *getpokerN=mysanew.arrfours[i];
+            ZCPoker *getpokerM=mysanew.arrfours[i-1];
+            ZCPoker *getpokerL=mysanew.arrfours[i-2];
+            ZCPoker *getpokerK=mysanew.arrfours[i-3];
+            if (k==0&&getpokerN.ponum>getpokerCP0.ponum){
+                [mysanew.arrreset addObject:getpokerN];
+                [mysanew.arrreset addObject:getpokerM];
+                [mysanew.arrreset addObject:getpokerL];
+                [mysanew.arrreset addObject:getpokerK];
+                k=k+4;
+                if (k/4==1) {
+                    if (lsintJ==KZC_FOURANDONEONE) {
+                        getpokerN=mysanew.arrsingle[mysanew.countsingles-1];
+                        getpokerN=mysanew.arrsingle[mysanew.countsingles-2];
+                        [mysanew.arrreset addObject:getpokerN];
+                        return mysanew;
+                    }else if (lsintJ==KZC_FOURANDTOWTOW){
+                        getpokerN=mysanew.arrdouble[mysanew.countdoubles-1];
+                        getpokerN=mysanew.arrdouble[mysanew.countdoubles-2];
+                        getpokerN=mysanew.arrdouble[mysanew.countdoubles-3];
+                        getpokerN=mysanew.arrdouble[mysanew.countdoubles-4];
+                        [mysanew.arrreset addObject:getpokerN];
+                        return mysanew;
+                    }else return mysanew;
+                }
+            }
+        }
+    }
+    mysanew.resultstr=KZC_TXTPOOL;
+    return mysanew;
+}
 @end

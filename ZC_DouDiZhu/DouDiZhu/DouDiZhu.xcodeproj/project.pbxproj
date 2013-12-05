@@ -507,6 +507,7 @@
 				B4A9BCB5184C9F14009781AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B4A9BCB6184C9F14009781AB /* Build configuration list for PBXNativeTarget "DouDiZhuTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +516,7 @@
 				B4A9BCB8184C9F14009781AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
