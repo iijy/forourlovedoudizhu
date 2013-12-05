@@ -19,7 +19,8 @@
     self.plisrich=NO;
     self.pliswannabe=NO;
     self.pliswannado=KZC_ISWANNADO;
-    self.plcanornot=KZC_CANORNOT;
+    self.plcanornot=KZC_BOOLCANORNOT;
+    self.plchuorbuchu=KZC_BOOLCHUORBUCHU;
     return self;
 }
 @end
@@ -110,7 +111,7 @@
 
 -(id)init{
     self=[super init];
-    self.font=KZC_FONTPFXS;
+    self.font=KZC_FONTPFS;
     self.textColor=KZC_CLBUTTONCII;
     return self;
 }

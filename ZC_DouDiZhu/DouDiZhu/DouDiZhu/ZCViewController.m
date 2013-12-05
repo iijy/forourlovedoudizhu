@@ -26,7 +26,7 @@
     ZCLabelmiddle *myDZS;
     ZCLabelsmall *myFNB;
     ZCLabelScore *labelscore;
-    int intBCCS;
+    
     int intBJCS;//不叫的次数
     int intQCS;//抢的次数
     int intCSDZ;//第一个叫地主的plnum
@@ -42,8 +42,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
     [super viewDidLoad];
 
     [self.view setBackgroundColor:KZC_CLWINDOWBG];
@@ -119,13 +118,6 @@
     [self.view addSubview:myplayerIII.plTS];
 }
 -(void)clearallpokerlabels{
-//    for (int i=0; i<20; i++) {
-//        ZCPokerFaceView *pokerview=(ZCPokerFaceView *)[self.view viewWithTag:100+i];
-//        ZCPokerFaceViewHeight *pokerviewheight2=(ZCPokerFaceViewHeight *)[self.view viewWithTag:200+i];
-//        ZCPokerFaceViewHeight *pokerviewheight3=(ZCPokerFaceViewHeight *)[self.view viewWithTag:300+i];
-//        
-//    }
-//    [self.view.subviews ]
     NSArray *label=[self.view subviews];
     for (int i=0; i<[label count]; i++) {
         [label[i] removeFromSuperview];
@@ -174,29 +166,46 @@
 
 -(void)showpocketLabels:(ZCPlayer *)player{
     NSInteger count =[player.plpocket count];
+    NSLog(@"plpo count=%d",count);
     CGRect rect=player.plframe;
     ZCPoker *getpokers[count];
     for (int i=0; i<count; i++) {
         getpokers[i] = [player.plpocket objectAtIndex:i];
         if (player.plnum==1) {
-             CGFloat startx=((count-1)*KZC_WIDTHPOCKETS+KZC_RLSPA.size.width)/2;
+            CGFloat startx=((count-1)*KZC_WIDTHPOCKETS+KZC_RLSPA.size.width)/2;
+            NSLog(@"startx=%f",startx);
             if (getpokers[i].poisselected==YES) {
-                getpokers[i].poview.frame=CGRectMake(rect.origin.x-startx+i*KZC_WIDTHPOCKETS,
+                getpokers[i].poview.frame=CGRectMake(KZC_RLSPA.origin.x-startx+i*KZC_WIDTHPOCKETS,
                                                      rect.origin.y-KZC_HEIGHTADD,
                                                      rect.size.width, rect.size.height) ;
-            }else getpokers[i].poview.frame=CGRectMake(rect.origin.x-startx+i*KZC_WIDTHPOCKETS,
+            }else getpokers[i].poview.frame=CGRectMake(KZC_RLSPA.origin.x-startx+i*KZC_WIDTHPOCKETS,
                                                        rect.origin.y,
                                                        rect.size.width, rect.size.height) ;
             getpokers[i].poview.tag=player.plnum*100+i;
             [self.view addSubview:getpokers[i].poview];
         }
-        else{
+        else if(player.plnum==2){
+            CGFloat starty=((count-1)*KZC_HEIGHTPOCKETS+KZC_RLSPB.size.height)/2;
+
             if (getpokers[i].poisselected==YES) {
-                getpokers[i].poviewheight.frame=CGRectMake(rect.origin.x-KZC_HEIGHTADD,
-                                                           rect.origin.y+i*KZC_HEIGHTPOCKETS,
+                                getpokers[i].poviewheight.frame=CGRectMake(rect.origin.x-KZC_HEIGHTADD,
+                                                           KZC_RLSPB.origin.y-starty+i*KZC_HEIGHTPOCKETS,
                                                            rect.size.width, rect.size.height) ;
             }else getpokers[i].poviewheight.frame=CGRectMake(rect.origin.x,
-                                                             rect.origin.y+i*KZC_HEIGHTPOCKETS,
+                                                             KZC_RLSPB.origin.y-starty+i*KZC_HEIGHTPOCKETS,
+                                                             rect.size.width, rect.size.height) ;
+            getpokers[i].poviewheight.tag=player.plnum*100+i;
+            [self.view addSubview:getpokers[i].poviewheight];
+        }
+        else if(player.plnum==3){
+            CGFloat starty=((count-1)*KZC_HEIGHTPOCKETS+KZC_RLSPC.size.height)/2;
+            if (getpokers[i].poisselected==YES) {
+                
+                getpokers[i].poviewheight.frame=CGRectMake(rect.origin.x-KZC_HEIGHTADD,
+                                                           KZC_RLSPC.origin.y-starty+i*KZC_HEIGHTPOCKETS,
+                                                           rect.size.width, rect.size.height) ;
+            }else getpokers[i].poviewheight.frame=CGRectMake(rect.origin.x,
+                                                             KZC_RLSPC.origin.y-starty+i*KZC_HEIGHTPOCKETS,
                                                              rect.size.width, rect.size.height) ;
             getpokers[i].poviewheight.tag=player.plnum*100+i;
             [self.view addSubview:getpokers[i].poviewheight];
@@ -223,7 +232,6 @@
 -(void)showCPLabels:(NSMutableArray *)pokerCP{
     NSInteger count =[pokerCP count];
     CGFloat startx=((count-1)*KZC_WIDTHPOCKETSS+KZC_RLCPA.size.width)/2;
-//    NSLog(@"%f",startx);
     CGRect rect;
     switch (intJD) {
         case 1:
@@ -287,7 +295,7 @@
     intDZ=intJD;
     myDZS.text=KZC_TXTDZS;
     myFNB.text=KZC_TXTFNB;
-    mywarning.text=[NSString stringWithFormat:@"等待%@出牌",[self getJDplayer:intJD].plname];
+    mywarning.text=KZC_TXTWAITING;
     [mymethod jdz:[self getJDplayer:intDZ]];
     [self showThreeLabels:mymethod.methree];
     [self showpocketLabels:[self getJDplayer:intDZ]];
@@ -309,12 +317,11 @@
     [self showpocketLabels:myplayerII];
     [self showpocketLabels:myplayerIII];
     intJD=[mymethod whoistherickman];
-    mywarning.text=[NSString stringWithFormat:@"%@叫地主？",[self getJDplayer:intJD].plname];
+    mywarning.text=KZC_TXTISWANNABE;
     [self unhiddenbuttons:KZC_TAGJDZ];
     [self unhiddenbuttons:KZC_TAGBJ];
 }//发牌按钮触发事件
 -(void)btnjdz{
-    intBCCS=0;
     [self getJDplayer:intJD].pliswannabe=YES;
     [self getJDplayer:intJD].plcp.text=KZC_TXTJDZ;
     [self getJDplayer:intJD].plcp.hidden=NO;
@@ -328,7 +335,7 @@
         return;
     }
     intJD=[mymethod jdscroll:intJD];
-    mywarning.text=[NSString stringWithFormat:@"%@叫地主，%@是否抢地主？",[self getJDplayer:intCSDZ].plname,[self getJDplayer:intJD].plname];
+    mywarning.text=KZC_TXTCSDZBIRTH;
     [self unhiddenbuttons:KZC_TAGQDZ];
     [self unhiddenbuttons:KZC_TAGBQ];
 }//叫地主 按钮触发事件
@@ -338,13 +345,12 @@
     [self getJDplayer:intJD].plcp.text=KZC_TXTBJ;
     [self getJDplayer:intJD].plcp.hidden=NO;
     [self performSelector:@selector(hiddenLabel:) withObject:[self getJDplayer:intJD] afterDelay:1.0f];
-    NSString *str=[NSString stringWithFormat:@"%@",[self getJDplayer:intJD].plname];
     intJD=[mymethod bj:[self getJDplayer:intJD]];
     if (intBJCS==3) {
         [self DZbirth];
         return;
     }
-    mywarning.text=[NSString stringWithFormat:@"%@没有叫地主，%@是否叫地主？",str,[self getJDplayer:intJD].plname];
+    mywarning.text=KZC_TXTNEXTISWANNABE;
 }//不叫 按钮触发事件
 -(void)btnqdz{
     intQCS++;
@@ -368,7 +374,7 @@
     if ([self getJDplayer:intJD].pliswannabe==NO&&[self getJDplayer:intJD].pliswannado==KZC_ISWANNADOBQ) {
         intJD=[mymethod bq:[self getJDplayer:intJD]];
     }
-    mywarning.text=[NSString stringWithFormat:@"%@是否抢地主？",[self getJDplayer:intJD].plname];
+    mywarning.text=KZC_TXTISWANNADO;
 }//抢地主 按钮触发事件
 -(void)btnbq{
     intBQCS++;
@@ -394,7 +400,7 @@
             return;
         }
     }
-    mywarning.text=[NSString stringWithFormat:@"%@是否抢地主？",[self getJDplayer:intJD].plname];
+    mywarning.text=KZC_TXTISWANNADO;
 }//不抢 按钮触发事件
 
 -(void)btnreset{
@@ -423,7 +429,6 @@
 
 }//重置 按钮触发事件
 -(void)btnchupai{
-    intBCCS=0;
     NSInteger countcpq1=[mymethod.mecp count];
     for (int i=0; i<countcpq1; i++) {
         ZCPokerFaceViewSmall *CPpokerview=(ZCPokerFaceViewSmall *)[self.view viewWithTag:intJD*1000+i];
@@ -522,7 +527,7 @@
             }
         }
     }
-    intBCCS++;
+    playerJD.plchuorbuchu=KZC_BOOLBUCHU;
     playerJD.plcp.text=KZC_TXTBUCHU;
     playerJD.plcp.hidden=NO;
     [self performSelector:@selector(hiddenLabel:) withObject:playerJD afterDelay:1.0f];
@@ -531,16 +536,17 @@
         ZCPokerFaceViewSmall *CPpokerview=(ZCPokerFaceViewSmall *)[self.view viewWithTag:intJD*1000+i];
         [CPpokerview removeFromSuperview];
     }
-    intJD=[mymethod jdscroll:intJD];
-    mywarning.text=KZC_TXTWAITING;
-    if (intBCCS==2) {
-        intBCCS=0;
+    if ([self getJDplayer:[mymethod jdscrollF:intJD]].plchuorbuchu==KZC_BOOLBUCHU) {
+        [self getJDplayer:[mymethod jdscrollF:intJD]].plchuorbuchu=KZC_BOOLCHUORBUCHU;
+        [self getJDplayer:intJD].plchuorbuchu=KZC_BOOLCHUORBUCHU;
         [self removeCPQ:countcpq];
         [mymethod.mecp removeAllObjects];
         mymethod.mecp=[NSMutableArray new];
         [self hiddenbuttons:KZC_TAGBUCHU];
 //        [self unhiddenbuttons:KZC_TAGTISHI];
     }
+    intJD=[mymethod jdscroll:intJD];
+    mywarning.text=KZC_TXTWAITING;
 }//不出 按钮触发事件
 -(void)removeCPQ:(NSInteger)count{
     for (int i=0; i<count; i++) {
@@ -556,21 +562,22 @@
     ZCPlayer *playerJD=[self getJDplayer:intJD];
     NSString *str=[mymethod tishi:mymethod.mecp :playerJD.plpocket];
     if ([str isEqualToString:KZC_TXTPOOL]) {
-        intBCCS++;
+        playerJD.plchuorbuchu=KZC_BOOLBUCHU;
         playerJD.plTS.text=str;
         [self.view addSubview: playerJD.plTS];
         playerJD.plTS.hidden=NO;
         [self performSelector:@selector(hiddenLabelTS:) withObject:playerJD afterDelay:1.0f];
-        playerJD.plcanornot=KZC_CANNOTCP;
-        intJD=[mymethod jdscroll:intJD];
-        if (intBCCS==2) {
-            intBCCS=0;
+        playerJD.plcanornot=KZC_BOOLCANNOTCP;
+        if ([self getJDplayer:[mymethod jdscrollF:intJD]].plchuorbuchu==KZC_BOOLBUCHU) {
+            [self getJDplayer:[mymethod jdscrollF:intJD]].plchuorbuchu=KZC_BOOLCHUORBUCHU;
+            [self getJDplayer:intJD].plchuorbuchu=KZC_BOOLCHUORBUCHU;
             [self removeCPQ:[mymethod.mecp count]];
             [mymethod.mecp removeAllObjects];
             mymethod.mecp=[NSMutableArray new];
             [self hiddenbuttons:KZC_TAGBUCHU];
-//            [self unhiddenbuttons:KZC_TAGTISHI];
+            //        [self unhiddenbuttons:KZC_TAGTISHI];
         }
+        intJD=[mymethod jdscroll:intJD];
         mywarning.text=KZC_TXTWAITING;
     }
     [self showpocketLabels:[self getJDplayer:intJD]];
@@ -628,7 +635,19 @@
         for (int i=0; i<count; i++) {
             getpokers[i]=playerJD.plpocket[i];
             ZCPokerFaceView *labelpoker=(ZCPokerFaceView *)[self.view viewWithTag:playerJD.plnum*100+i];
-            if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, KZC_WIDTHPOCKETS, labelpoker.frame.size.height) , locationTouch)){
+            if (i==count-1) {
+                if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, labelpoker.frame.size.height) , locationTouch)){
+                    yy=labelpoker.frame.origin.y;
+                    if (getpokers[i].poisselected==NO) {
+                        getpokers[i].poisselected=YES;
+                        labelpoker.frame=CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y-KZC_HEIGHTADD,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                    }else{
+                        getpokers[i].poisselected=NO;
+                        labelpoker.frame=CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y+KZC_HEIGHTADD,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                    }
+                }
+
+            }else if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, KZC_WIDTHPOCKETS, labelpoker.frame.size.height) , locationTouch)){
                 yy=labelpoker.frame.origin.y;
                 if (getpokers[i].poisselected==NO) {
                     getpokers[i].poisselected=YES;
@@ -646,6 +665,19 @@
         for (int i=0; i<count; i++) {
             getpokers[i]=playerJD.plpocket[i];
             ZCPokerFaceViewHeight *labelpoker=(ZCPokerFaceViewHeight *)[self.view viewWithTag:playerJD.plnum*100+i];
+            if (i==count-1) {
+                if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, labelpoker.frame.size.height) , locationTouch)){
+                    yy=labelpoker.frame.origin.y;
+                    if (getpokers[i].poisselected==NO) {
+                        getpokers[i].poisselected=YES;
+                        labelpoker.frame=CGRectMake(labelpoker.frame.origin.x-KZC_HEIGHTADD, labelpoker.frame.origin.y,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                    }else{
+                        getpokers[i].poisselected=NO;
+                        labelpoker.frame=CGRectMake(labelpoker.frame.origin.x+KZC_HEIGHTADD, labelpoker.frame.origin.y,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                    }
+                }
+                
+            }else
             if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width,KZC_HEIGHTPOCKETS ) , locationTouch)){
                 yy=labelpoker.frame.origin.y;
                 if (getpokers[i].poisselected==NO) {
@@ -676,7 +708,19 @@
             for (int i=0; i<count; i++) {
                 getpokers[i]=playerJD.plpocket[i];
                 ZCPokerFaceView *labelpoker=(ZCPokerFaceView *)[self.view viewWithTag:playerJD.plnum*100+i];
-                if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, KZC_WIDTHPOCKETS, labelpoker.frame.size.height) , locationB)){
+                if (i==count-1) {
+                    if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, labelpoker.frame.size.height) , locationB)){
+                        yy=labelpoker.frame.origin.y;
+                        if (getpokers[i].poisselected==NO) {
+                            getpokers[i].poisselected=YES;
+                            labelpoker.frame=CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y-KZC_HEIGHTADD,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                        }else{
+                            getpokers[i].poisselected=NO;
+                            labelpoker.frame=CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y+KZC_HEIGHTADD,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                        }
+                    }
+                    
+                }else if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, KZC_WIDTHPOCKETS, labelpoker.frame.size.height) , locationB)){
                     yy=labelpoker.frame.origin.y;
                     if (getpokers[i].poisselected==NO) {
                         getpokers[i].poisselected=YES;
@@ -694,6 +738,19 @@
                 for (int i=0; i<count; i++) {
                     getpokers[i]=playerJD.plpocket[i];
                     ZCPokerFaceView *labelpoker=(ZCPokerFaceView *)[self.view viewWithTag:playerJD.plnum*100+i];
+                    if (i==count-1) {
+                        if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, labelpoker.frame.size.height) , locationE)){
+                            yy=labelpoker.frame.origin.y;
+                            if (getpokers[i].poisselected==NO) {
+                                getpokers[i].poisselected=YES;
+                                labelpoker.frame=CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y-KZC_HEIGHTADD,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                            }else{
+                                getpokers[i].poisselected=NO;
+                                labelpoker.frame=CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y+KZC_HEIGHTADD,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                            }
+                        }
+                        
+                    }else
                     if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, KZC_WIDTHPOCKETS, labelpoker.frame.size.height) , locationE)){
                         yy=labelpoker.frame.origin.y;
                         if (getpokers[i].poisselected==NO) {
@@ -716,7 +773,20 @@
             for (int i=0; i<count; i++) {
                 getpokers[i]=playerJD.plpocket[i];
                 ZCPokerFaceViewHeight *labelpoker=(ZCPokerFaceViewHeight *)[self.view viewWithTag:playerJD.plnum*100+i];
-                if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, KZC_HEIGHTPOCKETS) , locationB)){
+                
+                if (i==count-1) {
+                    if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, labelpoker.frame.size.height) , locationB)){
+                        yy=labelpoker.frame.origin.y;
+                        if (getpokers[i].poisselected==NO) {
+                            getpokers[i].poisselected=YES;
+                            labelpoker.frame=CGRectMake(labelpoker.frame.origin.x-KZC_HEIGHTADD, labelpoker.frame.origin.y,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                        }else{
+                            getpokers[i].poisselected=NO;
+                            labelpoker.frame=CGRectMake(labelpoker.frame.origin.x+KZC_HEIGHTADD, labelpoker.frame.origin.y,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                        }
+                    }
+                    
+                }else if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, KZC_HEIGHTPOCKETS) , locationB)){
                     yy=labelpoker.frame.origin.y;
                     if (getpokers[i].poisselected==NO) {
                         getpokers[i].poisselected=YES;
@@ -734,7 +804,19 @@
                 for (int i=0; i<count; i++) {
                     getpokers[i]=playerJD.plpocket[i];
                     ZCPokerFaceViewHeight *labelpoker=(ZCPokerFaceViewHeight *)[self.view viewWithTag:playerJD.plnum*100+i];
-                    if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, KZC_HEIGHTPOCKETS) , locationE)){
+                    if (i==count-1) {
+                        if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, labelpoker.frame.size.height) , locationE)){
+                            yy=labelpoker.frame.origin.y;
+                            if (getpokers[i].poisselected==NO) {
+                                getpokers[i].poisselected=YES;
+                                labelpoker.frame=CGRectMake(labelpoker.frame.origin.x-KZC_HEIGHTADD, labelpoker.frame.origin.y,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                            }else{
+                                getpokers[i].poisselected=NO;
+                                labelpoker.frame=CGRectMake(labelpoker.frame.origin.x+KZC_HEIGHTADD, labelpoker.frame.origin.y,labelpoker.frame.size.width,labelpoker.frame.size.height);
+                            }
+                        }
+                        
+                    }else if(CGRectContainsPoint(CGRectMake(labelpoker.frame.origin.x, labelpoker.frame.origin.y, labelpoker.frame.size.width, KZC_HEIGHTPOCKETS) , locationE)){
                         yy=labelpoker.frame.origin.y;
                         if (getpokers[i].poisselected==NO) {
                             getpokers[i].poisselected=YES;

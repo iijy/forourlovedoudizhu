@@ -135,20 +135,58 @@
         self.layer.borderColor=[KZC_CLPOKERBORDER CGColor];
         self.layer.cornerRadius=8;
         UIColor *color;
+        
         if ([type isEqualToString:@"♥️"]||[type isEqualToString:@"♦️"]) {
             color=KZC_CLPOKERRED;
         }else color=KZC_CLPOKERBLACK;
-        _lnum=[[ZCPokerLabelNum alloc]initWithFrame:CGRectMake(1, 1, 18, 10)];
-        _lnum.font=KZC_FONTPFS;
-        _lnum.text=num;
-        _lnum.textColor=color;
-        [_lnum setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
-        [self addSubview:_lnum];
-        _ltype=[[ZCPokerLabelType alloc]initWithFrame:CGRectMake(19, 1, 18, 10)];
-        _ltype.text=type;
-        _ltype.font=KZC_FONTPFXS;
-        [_ltype setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
-        [self addSubview:_ltype];
+        
+        if ([type isEqualToString:@"🐱"]||[type isEqualToString:@"🐶"]) {
+            NSArray *arrJOKER=@[@"J",@"O",@"K",@"E",@"R"];
+            for (int i=0; i<5; i++) {
+                _lnum=[[ZCPokerLabelNum alloc]init];
+                _lnum.font=KZC_FONTPFXS;
+                _lnum.text=arrJOKER[i];
+                _lnum.numberOfLines=0;
+                [_lnum setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+                _lnum.frame=CGRectMake(KZC_RLNUMH.origin.x+i*(KZC_RLNUMH.size.width-11), KZC_RLNUMH.origin.y, KZC_RLNUMH.size.width-11, KZC_RLNUMH.size.height);
+                if ([type isEqualToString:@"🐶"]) {
+                    _lnum.textColor=KZC_CLPOKERBLACK;
+                }else _lnum.textColor=KZC_CLPOKERRED;
+                [self addSubview:_lnum];
+            }
+        }
+        else{
+            if ([num isEqualToString:@"10"]) {
+                _lnum=[[ZCPokerLabelNum alloc]init];
+                _lnum.text=@"0";
+                _lnum.font=KZC_FONTPFS;
+                _lnum.textColor=color;
+                [_lnum setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+                _lnum.frame=CGRectMake(KZC_RLNUMH.origin.x, KZC_RLNUMH.origin.y, KZC_RLNUMH.size.width, KZC_RLNUMH.size.height/2+2);
+                [self addSubview:_lnum];
+                _lnum=[[ZCPokerLabelNum alloc]init];
+                _lnum.text=@"1";
+                _lnum.font=KZC_FONTPFS;
+                _lnum.textColor=color;
+                [_lnum setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+                _lnum.frame=CGRectMake(KZC_RLNUMH.origin.x,KZC_RLNUMH.origin.y+KZC_RLNUMH.size.height/2, KZC_RLNUMH.size.width, KZC_RLNUMH.size.height/2+2);
+                [self addSubview:_lnum];
+                
+            }else{
+                _lnum=[[ZCPokerLabelNum alloc]init];
+                _lnum.font=KZC_FONTPFS;
+                _lnum.text=num;
+                _lnum.textColor=color;
+                [_lnum setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+                _lnum.frame=KZC_RLNUMH;
+                [self addSubview:_lnum];
+            }
+            _ltype=[[ZCPokerLabelType alloc]initWithFrame:KZC_RLTYPEH];
+            _ltype.text=type;
+            _ltype.font=KZC_FONTPFXS;
+            [_ltype setTransform:CGAffineTransformMakeRotation(-M_PI/2)];
+            [self addSubview:_ltype];
+        }
     }
     return self;
 }

@@ -146,6 +146,10 @@
     if (oriJD==3) return 1;
     return oriJD+1;
 } //循环焦点
+-(int)jdscrollF:(int)oriJD{
+    if (oriJD==1) return 3;
+    return oriJD-1;
+} //循环焦点
 -(void)dealtherichman:(ZCPlayer *)Player{
     Player.plisrich=YES;
     for (int  i=0; i<3; i++) {
@@ -569,11 +573,21 @@
     mysanew.arrdouble=[NSMutableArray new];
     mysanew.arrsingle=[NSMutableArray new];
     mysanew.arrreset=[NSMutableArray new];
+   
+    NSMutableArray *arrjokers=[NSMutableArray arrayWithCapacity:2];
     
     NSInteger countSP=[sparr count];
     ZCPoker *getpokerSP[countSP];
     for (int i=0; i<countSP; i++) {
         getpokerSP[i]=sparr[i];
+    }
+    if ([self.mecp count]==0) {
+        [mysanew.arrreset addObject:getpokerSP[0]];
+        return mysanew;
+    }
+    if (getpokerSP[0].ponum==100&&getpokerSP[1].ponum==50) {
+        [arrjokers addObject:getpokerSP[0]];
+        [arrjokers addObject:getpokerSP[1]];
     }
     NSInteger countCP=[cparr count];
     ZCPoker *getpokerCP[countCP];
@@ -616,6 +630,7 @@
     mysanew.countdoubles=[mysanew.arrdouble count]/2;
     mysanew.countsingles=[mysanew.arrsingle count];
     NSInteger lsint;
+    
     switch (fjcparr) {
         case KZC_SINGLEP:
             for (NSInteger i=mysanew.countsingles-1; i>=0; i--) {
@@ -958,12 +973,20 @@
     }
     if ([mysanew.resultstr isEqualToString: KZC_TXTPOOL]) {
         if (mysanew.countfours>0) {
+            [mysanew.arrreset removeAllObjects];
+            mysanew.arrreset=[NSMutableArray new];
             for (NSInteger mm=0; mm<4; mm++) {
                 mysanew.resultstr=@"OK";
-                ZCPoker *getpokerN=mysanew.arrfours[mysanew.countfours-1-mm];
+                ZCPoker *getpokerN=mysanew.arrfours[[mysanew.arrfours count]-1-mm];
                 [mysanew.arrreset addObject:getpokerN];
             }
             return mysanew;
+        }else if([arrjokers count]==2){
+            mysanew.resultstr=@"OK";
+            [mysanew.arrreset removeAllObjects];
+            mysanew.arrreset=[NSMutableArray new];
+            [mysanew.arrreset addObject:getpokerSP[0]];
+            [mysanew.arrreset addObject:getpokerSP[1]];
         }
     }
     return mysanew;

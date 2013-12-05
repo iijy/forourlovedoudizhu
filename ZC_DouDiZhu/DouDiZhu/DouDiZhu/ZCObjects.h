@@ -30,6 +30,7 @@
 @property BOOL pliswannabe;
 @property int pliswannado;
 @property int plcanornot;
+@property int plchuorbuchu;
 @property NSString *plname;
 @property NSMutableArray *plpocket;
 @property CGRect plframe;

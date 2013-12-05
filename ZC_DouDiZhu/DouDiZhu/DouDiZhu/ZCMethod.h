@@ -26,6 +26,7 @@
 -(void)dealtherichman:(ZCPlayer *)Player;//发地主牌
 -(NSMutableArray *)pocketsort:(NSMutableArray *)playerpocket;
 -(int)jdscroll:(int)oriJD;//循环焦点
+-(int)jdscrollF:(int)oriJD;//反循环焦点
 -(int)chupai:(ZCPlayer *)player;//出牌
 //-----------------------------------------------------------------------------------
 -(int)jdz:(ZCPlayer *)player;//叫地主
